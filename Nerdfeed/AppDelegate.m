@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "BNRCoursesViewController.h"
+#import "BNRWebViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    BNRCoursesViewController *cvc = [[BNRCoursesViewController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:cvc];
+    BNRWebViewController *wevc = [[BNRWebViewController alloc] init];
+    cvc.webViewController = wevc;
+    
+    self.window.rootViewController = masterNav;
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
