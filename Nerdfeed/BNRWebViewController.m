@@ -25,4 +25,11 @@
         [(UIWebView *)self.view loadRequest:req];
     }
 }
+
+- (void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
+{
+    // If this bar button item does not have a title, it will not appear at all
+    
+}
+
 @end

@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BNRWebViewController : UIViewController
+<UISplitViewControllerDelegate>
 @property (nonatomic) NSURL *URL;
 
 @end

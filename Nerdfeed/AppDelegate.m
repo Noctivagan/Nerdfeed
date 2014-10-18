@@ -25,8 +25,22 @@
     BNRWebViewController *wevc = [[BNRWebViewController alloc] init];
     cvc.webViewController = wevc;
     
-    self.window.rootViewController = masterNav;
-    
+    // Check to make sure we are running on the iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        // webViewController must be in navigation controller; you will see why later
+        UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:wevc];
+        UISplitViewController *svc = [[UISplitViewController alloc] init];
+        // Set the delegate of the split view controller to the detail VC
+        // You will need this later - ignore the warning for now
+        svc.delegate = wevc;
+        svc.viewControllers = @[masterNav, detailNav];
+        
+        // Set the root view controller of the window to the split view controller
+        self.window.rootViewController = svc;
+    } else {
+        // On non-ipad devices, just use the nav controller
+        self.window.rootViewController = masterNav;
+    }
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
